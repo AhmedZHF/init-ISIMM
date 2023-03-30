@@ -20,31 +20,5 @@ public class ChargeEnseignantController {
         this.enseignantService=enseignantService;
     }
 
-    @GetMapping(path="{enseignantId}")
-    public Enseignant getEnseignant(@PathVariable("enseignantId") Long userId){
-        return enseignantService.getEnseignant(userId);
-    }
-    @GetMapping
-    public List<Enseignant> getEnseignants(){
-        return enseignantService.getEnseignants();
-    }
-
-    @PostMapping
-    public void registerNewEnseignant(@RequestBody Enseignant enseignant){
-        enseignantService.signupEnseignant(enseignant);
-    }
-
-    @DeleteMapping(path="{enseignantId}")
-    public void deleteUser(@PathVariable("enseignantId") Long enseignantId){
-        enseignantService.deleteEnseignant(enseignantId);
-    }
-
-    @PutMapping(path ="{enseignantId}")
-    public void updateUser(
-            @PathVariable("enseignantId") Long enseignantId,
-            @RequestParam(required=false) String phone,
-            @RequestParam(required=false) String email){
-        enseignantService.updateEnseignant(enseignantId,phone,email);
-    }
-
+ 
 }
