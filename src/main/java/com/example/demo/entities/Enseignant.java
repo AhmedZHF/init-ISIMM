@@ -25,8 +25,9 @@ public class Enseignant extends Employer  {
     @OneToMany(mappedBy="enseignant",fetch=FetchType.LAZY)
     @JsonManagedReference
     private Set<Voeux> voeux;
-
-    private Set<EnseignantMatiere> enseignantMatiere = new HashSet<EnseignantMatiere>();
+    @OneToMany(mappedBy = "enseignant",fetch=FetchType.LAZY)
+    @JsonManagedReference
+    private Set<EnseignantMatiere> enseignantMatiere ;
 
 
     @OneToMany(mappedBy = "enseingant",fetch=FetchType.LAZY)
@@ -34,15 +35,17 @@ public class Enseignant extends Employer  {
     private Set<Note> notes;
 
 
-
+    @Column
     private float NombreHeures;
 
+    @Column
     private Grade gradeEnseignant ;
 
 
     public Enseignant() {
 
     }
+
 
 
     public Enseignant(Department department, Set<DemandeConger> demandeConger, Set<DemandeStockable> demandeStockable,Set<Service> services, String cin, String nom, String prenom, Date naissance, Sexe sexe, String adresse, String password, String email, String telephone, int age, Date DateEmbauche, int NbJourCongeTotale, int NbJourCongeRestant, float Salaire, Set<Voeux> voeux, Set<EnseignantMatiere> enseignantMatiere, Set<Note> notes, float nombreHeures, Grade gradeEnseignant) {
@@ -58,6 +61,9 @@ public class Enseignant extends Employer  {
         super(department, demandeConger, demandeStockable,services, cin, nom, prenom, naissance, sexe, adresse, password, email, telephone, age, DateEmbauche, NbJourCongeTotale, NbJourCongeRestant, Salaire);
         this.NombreHeures = nombreHeures;
         this.gradeEnseignant = gradeEnseignant;
+        this.voeux = new HashSet<Voeux>();
+        this.enseignantMatiere = new HashSet<EnseignantMatiere>();
+        this.notes = new HashSet<Note>();
     }
 
     public Enseignant(Department department, String cin, String nom, String prenom, Date naissance, Sexe sexe, String adresse, String password, String email, String telephone, int age, Date DateEmbauche, int NbJourCongeTotale, int NbJourCongeRestant, float Salaire, Set<Voeux> voeux, Set<EnseignantMatiere> enseignantMatiere, Set<Note> notes, float nombreHeures, Grade gradeEnseignant) {
@@ -69,11 +75,19 @@ public class Enseignant extends Employer  {
         this.gradeEnseignant = gradeEnseignant;
     }
 
+
+
     public Enseignant(Department department, String cin, String nom, String prenom, Date naissance, Sexe sexe, String adresse, String password, String email, String telephone, int age, Date DateEmbauche, int NbJourCongeTotale, int NbJourCongeRestant, float Salaire, float nombreHeures, Grade gradeEnseignant) {
         super(department, cin, nom, prenom, naissance, sexe, adresse, password, email, telephone, age, DateEmbauche, NbJourCongeTotale, NbJourCongeRestant, Salaire);
         this.NombreHeures = nombreHeures;
         this.gradeEnseignant = gradeEnseignant;
+        this.voeux = new HashSet<Voeux>();
+        this.enseignantMatiere = new HashSet<EnseignantMatiere>();
+        this.notes = new HashSet<Note>();
     }
+
+
+
 
 
 
@@ -85,8 +99,7 @@ public class Enseignant extends Employer  {
         this.voeux = voeux;
     }
 
-    @OneToMany(mappedBy = "enseignant")
-    @JsonManagedReference
+
     public Set<EnseignantMatiere> getEnseignantMatiere() {
         return enseignantMatiere;
     }
@@ -104,7 +117,7 @@ public class Enseignant extends Employer  {
 
     public void addEnseignantMatiere(EnseignantMatiere enseignantMatiere) {
         this.enseignantMatiere.add(enseignantMatiere);
-        //enseignantMatiere.setEnseignant(this);
+        enseignantMatiere.setEnseignant(this);
     }
 
     public void addNote(Note note) {

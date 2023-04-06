@@ -14,7 +14,11 @@ import java.util.Optional;
 
 public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 
-  
+    @Query("SELECT s FROM Enseignant s where  s.email=?1")
+    Optional<Enseignant> chargeFindEnseignantByEmail(String email);
+    @Query("SELECT s FROM Enseignant s where  s.cin=?1")
+    Optional<Enseignant> chargeFindEnseignantByCin(String cin);
+
 
 
 }

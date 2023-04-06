@@ -26,20 +26,34 @@ public class Matiere implements Serializable {
     @Column(length = 100)
     private String name;
 
-
+    @Column
     private float credit;
+    @Column
+    private float coeff;
 
-    private int coeffCr;
-    private int coeffTd;
+    @Column
+    private int coeffExam;
+
+    @Column
+    private int coeffDs;
+
+    @Column
     private int coeffTp;
-    private int coeffCri;
-    private int coeffNp;
+
+    @Column
+    private int coeffOral;
+    @Column
     private int code;
 
+    @Column
     private int nbHCr;
+    @Column
     private int nbHTd;
+    @Column
     private int nbHTp;
+    @Column
     private int nbHCri;
+    @Column
     private int nbHNp;
 
 
@@ -60,6 +74,8 @@ public class Matiere implements Serializable {
     @JsonManagedReference
     private Set<Note> notes;
 
+    @OneToMany(mappedBy = "matiere")
+    @JsonManagedReference
     private Set<EnseignantMatiere> enseignantMatiere ;
 
     public Matiere() {
@@ -67,14 +83,14 @@ public class Matiere implements Serializable {
     }
 
 
-    public Matiere(String name, float credit, int coeffCr, int coeffTd, int coeffTp, int coeffCri, int coeffNp, int code, int nbHCr, int nbHTd, int nbHTp, int nbHCri, int nbHNp, Regime regime, Unite unite, Set<Note> notes, Set<EnseignantMatiere> enseignantMatiere) {
+    public Matiere(String name, float credit, float coeff, int coeffExam, int coeffDs, int coeffTp, int coeffOral, int code, int nbHCr, int nbHTd, int nbHTp, int nbHCri, int nbHNp, Regime regime, Unite unite, Set<Note> notes, Set<EnseignantMatiere> enseignantMatiere) {
         this.name = name;
         this.credit = credit;
-        this.coeffCr = coeffCr;
-        this.coeffTd = coeffTd;
+        this.coeffExam = coeffExam;
+        this.coeff = coeff;
+        this.coeffDs = coeffDs;
         this.coeffTp = coeffTp;
-        this.coeffCri = coeffCri;
-        this.coeffNp = coeffNp;
+        this.coeffOral = coeffOral;
         this.code = code;
         this.nbHCr = nbHCr;
         this.nbHTd = nbHTd;
@@ -88,14 +104,14 @@ public class Matiere implements Serializable {
     }
 
 
-    public Matiere(String name, float credit, int coeffCr, int coeffTd, int coeffTp, int coeffCri, int coeffNp, int code, int nbHCr, int nbHTd, int nbHTp, int nbHCri, int nbHNp, Regime regime, Unite unite ) {
+    public Matiere(String name, float credit,  float coeff, int coeffExam, int coeffDs, int coeffTp, int coeffOral, int code, int nbHCr, int nbHTd, int nbHTp, int nbHCri, int nbHNp, Regime regime, Unite unite ) {
         this.name = name;
         this.credit = credit;
-        this.coeffCr = coeffCr;
-        this.coeffTd = coeffTd;
+        this.coeffExam = coeffExam;
+        this.coeff = coeff;
+        this.coeffDs = coeffDs;
         this.coeffTp = coeffTp;
-        this.coeffCri = coeffCri;
-        this.coeffNp = coeffNp;
+        this.coeffOral = coeffOral;
         this.code = code;
         this.nbHCr = nbHCr;
         this.nbHTd = nbHTd;
@@ -115,8 +131,7 @@ public class Matiere implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "matiere")
-    @JsonManagedReference
+
     public Set<EnseignantMatiere> getEnseignantMatiere() {
         return enseignantMatiere;
     }

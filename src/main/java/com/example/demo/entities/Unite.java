@@ -23,6 +23,7 @@ public class Unite implements Serializable {
     private String name;
 
     @ManyToMany
+    @JoinColumn(name="id_semestres")
     private Set<Semestre> semestres;
 
     public Unite() {
@@ -32,11 +33,18 @@ public class Unite implements Serializable {
     @JsonManagedReference
     private Set<Matiere> matieres;
 
+
+    @Column
     private float coef;
 
+    @Column
+    private int  codeUnite ;
+
+    @Column
     private float credit;
 
-    public Unite(String name, Set<Semestre> semestres, Set<Matiere> matieres, float coef, float credit) {
+    public Unite(int  codeUnite, String name, Set<Semestre> semestres, Set<Matiere> matieres, float coef, float credit) {
+        this.codeUnite = codeUnite;
         this.name = name;
         this.semestres = semestres;
         this.matieres = matieres;
@@ -44,7 +52,8 @@ public class Unite implements Serializable {
         this.credit = credit;
     }
 
-    public Unite(String name, float coef, float credit) {
+    public Unite(int  codeUnite, String name, float coef, float credit) {
+        this.codeUnite = codeUnite;
         this.name = name;
         this.semestres = new HashSet<>();
         this.matieres = new HashSet<>();
