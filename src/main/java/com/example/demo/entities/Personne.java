@@ -17,31 +17,31 @@ public class Personne implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    private Long id;
+    public Long id;
 
     @Column(length = 100)
-    private String cin;
+    public String cin;
     @Column(length = 100)
-    private String nom;
+    public String nom;
     @Column(length = 100)
-    private String prenom;
+    public String prenom;
 
     @Column
-    private Date naissance;
+    public Date naissance;
 
-    @Enumerated(EnumType.STRING)
+    
     @Column
-    private Sexe sexe;
+    public Sexe sexe;
     @Column(length = 500)
-    private String adresse ;
+    public String adresse ;
     @Column(length = 100)
-    private String password;
+    public String password;
     @Column(length = 100)
-    private String email;
+    public String email;
     @Column(length = 100)
-    private String telephone;
+    public String telephone;
     @Column
-    private int age;
+    public int age;
 
     public Personne() {
 

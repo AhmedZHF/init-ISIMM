@@ -17,26 +17,26 @@ public class Department implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_department", nullable = false)
-    private Long idDepartment;
+    public Long idDepartment;
 
     @Column(length = 100)
-    private String name;
+    public String name;
 
 
-    private String NonDepartement;
+    public String NonDepartement;
 
     @OneToOne
     @JoinColumn(name="id_ChefDepartement")
-    private Employer ChefDepartement;
+    public Employer ChefDepartement;
 
     @OneToMany(mappedBy = "department",fetch=FetchType.LAZY)
     @JsonManagedReference
-    private Set<Employer> employers;
+    public Set<Employer> employers;
 
 
     @OneToMany(mappedBy = "department",fetch=FetchType.LAZY)
     @JsonManagedReference
-    private Set<Enseignant> enseignants;
+    public Set<Enseignant> enseignants;
 
     public Department() {
 

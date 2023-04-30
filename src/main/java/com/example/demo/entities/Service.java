@@ -17,14 +17,14 @@ public class Service implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "idService", nullable = false)
-    private Long idService;
+    public Long idService;
 
     @Column(length = 100)
-    private String name;
+    public String name;
 
     @ManyToMany
     @JoinColumn(name="id_employers")
-    private Set<Employer> employers;
+    public Set<Employer> employers;
 
 
 

@@ -25,27 +25,27 @@ public class Employer  extends Personne {
 
 
     @Column
-    private Date DateEmbauche;
+    public Date DateEmbauche;
     @Column
-    private int NbJourCongeTotale;
+    public int NbJourCongeTotale;
     @Column
-    private int NbJourCongeRestant;
+    public int NbJourCongeRestant;
     @Column
-    private float Salaire;
+    public float Salaire;
 
     @ManyToMany
     @JoinColumn(name="id_services")
-    private Set<Service> services;
+    public Set<Service> services;
     @JsonBackReference
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="id_department")
-    private Department department;
+    public Department department;
 
-    @OneToMany(mappedBy = "employer",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "employer")
     @JsonManagedReference
-    private Set<DemandeConger> demandeConger;
+    public Set<DemandeConger> demandeConger;
 
-    @OneToMany(mappedBy = "employer",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "employer")
     @JsonManagedReference
     private Set<DemandeStockable> demandeStockable;
 
