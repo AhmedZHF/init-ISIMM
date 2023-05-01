@@ -99,10 +99,11 @@ public class CongeEntityController {
         }
     } */
    
-    @PutMapping(path ="/accepter/{id}/etat")
-    public ResponseEntity<Void> accepterDemandeById(@PathVariable Long id ,@RequestParam Etat etat) {
+    @PutMapping(path ="/accepter/{id}")
+    public ResponseEntity<Void> accepterDemandeById(@PathVariable Long id ) {
         Optional<DemandeConger> demande1 = entityService.getDemande(id);
         if (demande1 != null) {
+        	Etat etat= Etat.ACCEPTE;
         	DemandeConger dem=demande1.get();
         	dem.setEtatDemande(etat);
         	entityService.accepterDemande(dem);
@@ -115,10 +116,11 @@ public class CongeEntityController {
     
     
     
-    @PutMapping(path ="/refuser/{id}/etat")
-    public ResponseEntity<Void> refuserDemandeById(@PathVariable Long id ,@RequestParam Etat etat) {
+    @PutMapping(path ="/refuser/{id}")
+    public ResponseEntity<Void> refuserDemandeById(@PathVariable Long id ) {
         Optional<DemandeConger> demande1 = entityService.getDemande(id);
         if (demande1 != null) {
+        	Etat etat= Etat.REFUSE;
         	DemandeConger dem=demande1.get();
         	dem.setEtatDemande(etat);
         	entityService.refuserDemande(dem);
