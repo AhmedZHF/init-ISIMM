@@ -78,14 +78,42 @@ public void deleteDemanderById(Long id) {
         return CongerRepository.findByEtat(etat);
     }
     
-    public  List<DemandeConger> findDemandeByEtatAttente() {
-        return CongerRepository.findByEtatAttente();
+    public  List<Demande> findDemandeByEtatAttente() {
+       
+        
+        List<DemandeConger> L1= CongerRepository.findByEtatAttente(); ;
+    	List<Demande> L2 = new ArrayList<Demande>();
+    	
+    	for (DemandeConger element : L1) {
+    	    L2.add(new Demande(element));
+    	}
+    	
+    	
+        return L2;
     }
-    public  List<DemandeConger> findDemandeByEtatRefuse() {
-        return CongerRepository.findByEtatRefuse();
+    public  List<Demande> findDemandeByEtatRefuse() {
+        
+        List<DemandeConger> L1= CongerRepository.findByEtatRefuse() ;
+    	List<Demande> L2 = new ArrayList<Demande>();
+    	
+    	for (DemandeConger element : L1) {
+    	    L2.add(new Demande(element));
+    	}
+    	
+    	
+        return L2;
     }
-    public  List<DemandeConger> findDemandeByEtatAccepte() {
-        return CongerRepository.findByEtatAccepte();
+    public  List<Demande> findDemandeByEtatAccepte() {
+       
+        List<DemandeConger> L1= CongerRepository.findByEtatAccepte();
+    	List<Demande> L2 = new ArrayList<Demande>();
+    	
+    	for (DemandeConger element : L1) {
+    	    L2.add(new Demande(element));
+    	}
+    	
+    	
+        return L2;
     }
     public void updateJutification(DemandeConger dem) {
 		CongerRepository.save(dem);

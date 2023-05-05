@@ -66,21 +66,21 @@ public class CongeEntityController {
     
     
     @GetMapping("/attente")
-    public List<DemandeConger> getDemandByEtatAttente() {
+    public List<Demande> getDemandByEtatAttente() {
      return entityService.findDemandeByEtatAttente();
        
     }
     
     
     @GetMapping("/refuse")
-    public List<DemandeConger> getDemandByEtatRefuse() {
+    public List<Demande> getDemandByEtatRefuse() {
      return entityService.findDemandeByEtatRefuse();
        
     }
    
     
     @GetMapping("/accepte")
-    public List<DemandeConger> getDemandByEtatAccepte() {
+    public List<Demande> getDemandByEtatAccepte() {
      return entityService.findDemandeByEtatAccepte();
        
     }
